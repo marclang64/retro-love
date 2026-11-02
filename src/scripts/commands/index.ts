@@ -4,6 +4,7 @@ import { CLR } from "./clr";
 import { EXIT } from "./exit";
 import { GET } from "./get";
 import { GOTO } from "./goto";
+import { HELP } from "./help";
 import { IF } from "./if";
 import { INPUT } from "./input";
 import { LET } from "./let";
@@ -23,13 +24,14 @@ export const commands: Record<string, CommandDefinition> = {
   exit: { args: "none", fn: EXIT },
   get: { args: "required", fn: GET },
   goto: { args: "required", fn: GOTO },
+  help: { args: "none", fn: HELP },
   if: { args: "required", fn: IF },
   input: { args: "required", fn: INPUT },
   let: { args: "required", fn: LET },
   list: { args: "none", fn: LIST },
   load: { args: "required", fn: LOAD },
   print: { args: "optional", fn: PRINT },
-  rem: { args: "required", fn: REM },
+  rem: { args: "none", fn: REM },
   run: { args: "none", fn: RUN },
 };
 
