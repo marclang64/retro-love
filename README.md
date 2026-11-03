@@ -1,12 +1,14 @@
 # C=64 BASIC V2 Interpreter
 
-*A little piece of 1982, running in your browser.*
+_A little piece of 1982, running in your browser._
 
 A browser-based **Commodore 64 BASIC V2 interpreter**, built from scratch with **TypeScript**.
 
 Write and execute BASIC commands directly, create programs using classic line numbers and experience a little 8-bit nostalgia with a retro-inspired interface, authentic-looking typography, and the iconic blinking block cursor.
 
 The interpreter also powers an interactive portfolio written in BASIC.
+
+Check it out [here](https://www.marclang.ch).
 
 ## Features
 
@@ -34,7 +36,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/marclang64/retro-love.git
-cd YOUR_REPOSITORY
+cd retro-love
 ```
 
 Install dependencies:
@@ -161,14 +163,14 @@ Press **Ctrl+C** to interrupt a running program, including one waiting for `INPU
 
 The interpreter is organized into several components:
 
-| Component | Responsibility |
-|---|---|
-| **Dispatcher** | Processes entered BASIC commands and numbered program lines |
-| **Tokenizer** | Converts BASIC expressions into typed tokens |
-| **Command implementations** | Execute instructions such as `PRINT`, `LET`, `INPUT`, and `GOTO` |
-| **Arithmetic evaluator** | Evaluates expressions with operator precedence and unary minus |
-| **Program storage** | Stores numbered BASIC lines and variables |
-| **Execution engine** | Runs programs, handles jumps, waits for input, and supports interruption |
+| Component                   | Responsibility                                                           |
+| --------------------------- | ------------------------------------------------------------------------ |
+| **Dispatcher**              | Processes entered BASIC commands and numbered program lines              |
+| **Tokenizer**               | Converts BASIC expressions into typed tokens                             |
+| **Command implementations** | Execute instructions such as `PRINT`, `LET`, `INPUT`, and `GOTO`         |
+| **Arithmetic evaluator**    | Evaluates expressions with operator precedence and unary minus           |
+| **Program storage**         | Stores numbered BASIC lines and variables                                |
+| **Execution engine**        | Runs programs, handles jumps, waits for input, and supports interruption |
 
 The interpreter evaluates arithmetic expressions without using JavaScript's `eval()`.
 
@@ -211,4 +213,4 @@ The result is both a programming experiment and an interactive portfolio.
 
 ---
 
-*READY.* █
+_READY._ █
