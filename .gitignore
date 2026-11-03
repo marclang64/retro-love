@@ -2,3 +2,5 @@
 *.min.css
 
 .zed/
+
+dist/
