@@ -1,11 +1,9 @@
 import type { CommandResult } from "../types/command";
 import { commandType } from "../app/constants";
-import { dom } from "../ui/dom";
+import * as storage from "../app/storage";
 
-// TODO: CLR should clear the variables
 export async function CLR(): Promise<CommandResult> {
-  dom.clearOutput();
-  dom.clearInput();
+  storage.clearVariableStorage();
 
   return { type: commandType.DEFAULT, value: null };
 }
