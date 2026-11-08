@@ -11,7 +11,8 @@ export async function PRINT(args: string | Token[]): Promise<CommandResult> {
 
     if (tokens.length) {
       const resolved = strings.substituteVariables(tokens, storage.variableStorage);
-      const output = strings.parse(resolved);
+      const evaluated = strings.evaluateFunctions(resolved);
+      const output = strings.parse(evaluated);
       dom.outputLine(output);
     } else {
       dom.outputLine("");

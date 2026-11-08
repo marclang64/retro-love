@@ -8,5 +8,7 @@ export type Token = {
     | "command"
     | "operator"
     | "separator"
-    | "comparisonoperator";
+    | "comparisonoperator"
+    | "function"
+    | "parenthesis";
 };

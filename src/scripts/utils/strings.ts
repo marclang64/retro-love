@@ -18,6 +18,7 @@ export function tokenize(string: string): Token[] {
   const comparisonOperators = ["=", "<>", "<", "<=", ">", ">="];
   const outputSeparators = [";", ","];
   const types = ["$", "%"];
+  const parenthesis = ["(", ")"];
   const tokens: Token[] = [];
   let buffer = "";
   let stringmode = false;
@@ -59,7 +60,10 @@ export function tokenize(string: string): Token[] {
     if ((!/^[A-Za-z]$/.test(char) || types.includes(char)) && varmode) {
       if (types.includes(char)) {
         buffer += char;
-        tokens.push({ value: buffer.toLowerCase(), type: "variable" });
+        tokens.push({
+          value: buffer.toLowerCase(),
+          type: buffer.toLowerCase() === "chr$" ? "function" : "variable",
+        });
         buffer = "";
         varmode = false;
         isInMode = false;
@@ -146,6 +150,12 @@ export function tokenize(string: string): Token[] {
       continue;
     }
 
+    // parenthesis
+    if (parenthesis.includes(char)) {
+      tokens.push({ value: char, type: "parenthesis" });
+      continue;
+    }
+
     // reject unknown characters
     if (char !== undefined) {
       throw new Error(`Unexpected character: ${char}`);
@@ -154,6 +164,34 @@ export function tokenize(string: string): Token[] {
 
   if (stringmode) {
     tokens.push({ value: buffer, type: "string" });
+  }
+
+  return tokens;
+}
+
+// evaluate function calls
+export function evaluateFunctions(tokens: Token[]): Token[] {
+  for (let i = 0; i < tokens.length; i++) {
+    const token = tokens[i];
+
+    if (token.type === "function") {
+      if (
+        token.value === "chr$" &&
+        tokens[i + 1].value === "(" &&
+        tokens[i + 2].type === "number" &&
+        tokens[i + 3].value === ")"
+      ) {
+        const charCode = Number(tokens[i + 2].value);
+        tokens.splice(i, 4, {
+          type: "string",
+          value: String.fromCharCode(charCode),
+        });
+
+        i--;
+      } else {
+        throw new Error("SYNTAX ERROR");
+      }
+    }
   }
 
   return tokens;
