@@ -20,7 +20,8 @@ export async function LET(args: string): Promise<CommandResult> {
     const variableName = String(tokens[0].value);
     const expectedType = strings.determineVariableType(variableName);
 
-    const expression = strings.substituteVariables(tokens.slice(2), storage.variableStorage);
+    const resolved = strings.substituteVariables(tokens.slice(2), storage.variableStorage);
+    const expression = strings.evaluateFunctions(resolved);
 
     let value: string | number;
 
