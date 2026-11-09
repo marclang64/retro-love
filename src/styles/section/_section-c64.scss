@@ -50,7 +50,7 @@
       content: " ";
       position: absolute;
       bottom: 8px;
-      left: calc(100% + 2px);
+      left: calc(var(--cursor-position, 0) * 1ch);
       width: 14px;
       height: 17px;
       background-color: var(--color-c64-light);
@@ -59,16 +59,9 @@
     }
 
     .input {
-      width: 0 !important;
+      width: 0;
       padding: 0;
       border: 0;
-      background-color: transparent;
-      color: var(--color-c64-light);
-      font-family: "Kommondore", monospace;
-      font-size: 1rem;
-      text-transform: uppercase;
-      outline: none;
-      caret-color: transparent;
     }
 
     .text {
@@ -76,6 +69,7 @@
       text-shadow: var(--glow-c64);
       padding: 0 0 0 15px;
       margin-left: -15px;
+      white-space: pre;
     }
   }
 
