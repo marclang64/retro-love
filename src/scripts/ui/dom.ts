@@ -2,7 +2,7 @@ import { getElement } from "../utils/html";
 
 function createDom() {
   const input = getElement<HTMLInputElement>(".input");
-  const text = getElement<HTMLInputElement>(".text");
+  const mirror = getElement<HTMLInputElement>(".mirror");
   const output = getElement<HTMLTextAreaElement>(".output");
   const petscii: Record<number, () => void> = {
     147: clearOutput,
@@ -11,7 +11,7 @@ function createDom() {
   function outputLine(value: string | number): void {
     for (const character of `\n${value}`) {
       if (!processPetscii(character)) {
-        output.value += character;
+        output.textContent += character;
       }
     }
 
@@ -28,7 +28,7 @@ function createDom() {
   }
 
   function clearOutput(): void {
-    output.value = "";
+    output.textContent = "";
   }
 
   function clearInput(): void {
@@ -40,7 +40,7 @@ function createDom() {
     if (ready) outputLine(`\nReady.`);
   }
 
-  return { input, text, output, outputLine, clearOutput, clearInput, resetInput };
+  return { input, mirror, output, outputLine, clearOutput, clearInput, resetInput };
 }
 
 export const dom = createDom();

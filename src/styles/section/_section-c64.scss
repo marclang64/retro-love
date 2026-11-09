@@ -64,7 +64,7 @@
       border: 0;
     }
 
-    .text {
+    .mirror {
       height: 32px;
       text-shadow: var(--glow-c64);
       padding: 0 0 0 15px;
@@ -78,17 +78,15 @@
     max-height: calc(100vh - 160px);
     padding: 0 15px 0;
     margin: -4px 0 4px -15px;
-    border: 0;
     background-color: transparent;
     color: var(--color-c64-light);
     text-shadow: var(--glow-c64);
     font-family: "Kommondore", monospace;
     font-size: 1rem;
     text-transform: uppercase;
-    outline: none;
-    resize: none;
     line-height: 1.5;
-    field-sizing: content;
     scrollbar-width: none;
+    white-space: pre-wrap;
+    overflow-y: auto;
   }
 }

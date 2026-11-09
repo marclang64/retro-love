@@ -5,14 +5,14 @@ import { programState } from "../app/state";
 import { inputMode } from "../app/constants";
 
 function updateInputDisplay(): void {
-  const { input, text } = dom;
+  const { input, mirror } = dom;
 
-  text.textContent = input.value;
+  mirror.textContent = input.value;
   updateCursorPosition(input.selectionStart ?? input.value.length);
 }
 
 function updateCursorPosition(position: number): void {
-  dom.text.parentElement?.style.setProperty("--cursor-position", String(position));
+  dom.mirror.parentElement?.style.setProperty("--cursor-position", String(position));
 }
 
 function submitPrompt(): void {
@@ -51,7 +51,7 @@ function registerInputListeners(): void {
 
     if (event.key === "Enter") {
       event.preventDefault();
-      dom.text.textContent = "";
+      dom.mirror.textContent = "";
       updateCursorPosition(0);
 
       if (programState.activeInputMode === inputMode.PROMPT) {
