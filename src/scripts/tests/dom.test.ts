@@ -5,8 +5,11 @@ let dom: typeof import("../ui/dom").dom;
 
 beforeAll(async () => {
   document.body.innerHTML = `
-    <input class="input" />
-    <textarea class="output"></textarea>
+    <div class="prompt">
+      <span class="mirror" aria-hidden="true"></span>
+      <input type="text" class="input" />
+    </div>
+    <div class="output"></div>
   `;
 
   ({ dom } = await import("../ui/dom"));
@@ -20,19 +23,19 @@ describe("DOM output", () => {
   it("appends ordinary text", () => {
     dom.outputLine("HELLO");
 
-    expect(dom.output.value).toBe("\nHELLO");
+    expect(dom.output.textContent).toBe("\nHELLO");
   });
 
   it("clears the screen with PETSCII 147", () => {
     dom.outputLine("HELLO");
     dom.outputLine(String.fromCharCode(147));
 
-    expect(dom.output.value).toBe("");
+    expect(dom.output.textContent).toBe("");
   });
 
   it("continues printing after clearing the screen", () => {
     dom.outputLine(`HELLO${String.fromCharCode(147)}WORLD`);
 
-    expect(dom.output.value).toBe("WORLD");
+    expect(dom.output.textContent).toBe("WORLD");
   });
 });
