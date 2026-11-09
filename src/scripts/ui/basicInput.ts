@@ -5,8 +5,9 @@ import { programState } from "../app/state";
 import { inputMode } from "../app/constants";
 
 function updateInputSize(): void {
-  const { input } = dom;
+  const { input, text } = dom;
 
+  text.textContent = input.value;
   input.size = Math.max(input.value.length, 1);
   input.style.width = input.value.length === 0 ? "0px" : "auto";
 }
@@ -36,6 +37,7 @@ function registerInputListeners(): void {
 
     if (event.key === "Enter") {
       event.preventDefault();
+      dom.text.textContent = "";
 
       if (programState.activeInputMode === inputMode.PROMPT) {
         submitPrompt();

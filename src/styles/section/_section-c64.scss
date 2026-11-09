@@ -7,9 +7,14 @@
   padding: 15px 15px;
   text-transform: uppercase;
   line-height: 2;
+  box-shadow: var(--glow-c64);
+  background:
+    url("/assets/images/noise.svg"),
+    linear-gradient(180deg, var(--color-c64-dark), var(--color-c64-black));
 
   header {
     text-align: center;
+    text-shadow: var(--glow-c64);
   }
 
   &::before {
@@ -37,21 +42,24 @@
 
   .prompt {
     position: relative;
+    display: flex;
     width: fit-content;
+    top: -8px;
 
     &::after {
       content: " ";
       position: absolute;
-      bottom: 0px;
+      bottom: 8px;
       left: calc(100% + 2px);
       width: 14px;
       height: 17px;
       background-color: var(--color-c64-light);
+      box-shadow: var(--glow-c64);
       animation: blink 1s infinite;
     }
 
     .input {
-      width: 0;
+      width: 0 !important;
       padding: 0;
       border: 0;
       background-color: transparent;
@@ -62,17 +70,24 @@
       outline: none;
       caret-color: transparent;
     }
+
+    .text {
+      height: 32px;
+      text-shadow: var(--glow-c64);
+      padding: 0 0 0 15px;
+      margin-left: -15px;
+    }
   }
 
   .output {
     width: 100%;
     max-height: calc(100vh - 160px);
-    padding: 0;
-    margin-top: -4px;
-    margin-bottom: 4px;
+    padding: 0 15px 0;
+    margin: -4px 0 4px -15px;
     border: 0;
     background-color: transparent;
     color: var(--color-c64-light);
+    text-shadow: var(--glow-c64);
     font-family: "Kommondore", monospace;
     font-size: 1rem;
     text-transform: uppercase;
