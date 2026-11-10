@@ -17,6 +17,29 @@ function createDom() {
     output.scrollTop = output.scrollHeight;
   }
 
+  function clearInput(): void {
+    input.value = "";
+    input.style.width = "0px";
+  }
+
+  function clearOutput(): void {
+    output.textContent = "";
+  }
+
+  function resetInput(ready = false): void {
+    if (ready) outputLine(`\nReady.`);
+  }
+
+  function startupScreen(): void {
+    console.log("starting");
+    clearOutput();
+    openContainer("center");
+    outputLine("**** Commodore 64 Basic V2 ****");
+    outputLine("64K RAM System 38911 Basic Bytes Free");
+    closeContainer();
+    resetInput(true);
+  }
+
   const processPetscii = createPetscii({
     setColor: (color) => {
       currentColor = color;
@@ -49,10 +72,6 @@ function createDom() {
     currentContainer.append(span);
   }
 
-  function clearOutput(): void {
-    output.textContent = "";
-  }
-
   let currentContainer: HTMLElement = output;
 
   function openContainer(className: string): void {
@@ -69,16 +88,7 @@ function createDom() {
     }
   }
 
-  function clearInput(): void {
-    input.value = "";
-    input.style.width = "0px";
-  }
-
-  function resetInput(ready = false): void {
-    if (ready) outputLine(`\nReady.`);
-  }
-
-  return { input, mirror, output, outputLine, clearOutput, clearInput, resetInput };
+  return { input, mirror, output, outputLine, clearOutput, clearInput, resetInput, startupScreen };
 }
 
 export const dom = createDom();
