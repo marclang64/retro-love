@@ -15,6 +15,7 @@ as the starting point for compiling all project-related scss-files
 @use "shared/shadows";
 @use "shared/animations";
 @use "shared/typography";
+@use "shared/alignment";
 
 // sections
 @use "app/layout";
