@@ -1,0 +1,32 @@
+.prompt {
+  position: relative;
+  display: flex;
+  width: fit-content;
+  top: -8px;
+
+  &::after {
+    content: " ";
+    position: absolute;
+    bottom: 8px;
+    left: calc(var(--cursor-position, 0) * 1ch);
+    width: 14px;
+    height: 17px;
+    background-color: var(--color-light-blue);
+    box-shadow: var(--glow-light-blue);
+    animation: blink 1s infinite;
+  }
+
+  .input {
+    width: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .mirror {
+    height: 32px;
+    text-shadow: var(--glow-light-blue);
+    padding: 0 0 0 15px;
+    margin-left: -15px;
+    white-space: pre;
+  }
+}

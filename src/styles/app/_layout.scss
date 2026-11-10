@@ -1,0 +1,41 @@
+main#c64 {
+  font-family: "Kommondore", monospace;
+  height: calc(100vh - 90px);
+  color: var(--color-light-blue);
+  margin: 30px;
+  padding: 15px 15px;
+  text-transform: uppercase;
+  line-height: 2;
+  box-shadow: var(--glow-light-blue);
+  background:
+    url("/assets/images/noise.svg"),
+    linear-gradient(180deg, var(--color-minsk), var(--color-meteorite));
+
+  header {
+    text-align: center;
+    text-shadow: var(--glow-light-blue);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--color-light-blue);
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: repeating-linear-gradient(transparent 0px 1px, hsl(154 0% 0%/0.35) 3px 4px);
+    opacity: 0.2;
+    pointer-events: none;
+  }
+}
