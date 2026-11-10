@@ -45,7 +45,9 @@ function createDispatcher() {
           dom.outputLine("?Syntax Error");
         }
 
-        dom.resetInput(true);
+        if (result.type !== commandType.EXIT) {
+          dom.resetInput(true);
+        }
       })
       .catch((error: unknown) => {
         console.error("Command execution failed:", error);

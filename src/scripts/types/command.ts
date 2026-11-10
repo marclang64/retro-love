@@ -5,7 +5,8 @@ export type CommandResult =
   | { type: commandType.DEFAULT; value: null }
   | { type: commandType.ERROR; value: null }
   | { type: commandType.GOTO; value: number }
-  | { type: commandType.INPUT; value: Token[] };
+  | { type: commandType.INPUT; value: Token[] }
+  | { type: commandType.EXIT; value: null };
 
 export type CommandHandler = (args: string) => Promise<CommandResult>;
 

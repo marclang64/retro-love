@@ -22,6 +22,11 @@ export async function RUN(): Promise<CommandResult> {
 
       dom.clearInput();
 
+      // check if EXIT was called
+      if (result.type === commandType.EXIT) {
+        return result;
+      }
+
       // check if abort was pressed
       if (programState.abortProgram) {
         programState.abortProgram = false;

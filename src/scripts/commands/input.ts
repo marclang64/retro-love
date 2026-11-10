@@ -56,7 +56,6 @@ export async function waitForUserInput(variableName: string) {
 
     const cancelHandler = () => {
       cleanup();
-      dom.resetInput(true);
       reject(new Error("InputCancelled"));
     };
 

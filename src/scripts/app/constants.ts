@@ -3,6 +3,7 @@ export enum commandType {
   GOTO,
   INPUT,
   ERROR,
+  EXIT,
 }
 
 export enum inputMode {

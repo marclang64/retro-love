@@ -5,5 +5,5 @@ import { dom } from "../ui/dom";
 export async function EXIT(): Promise<CommandResult> {
   dom.startupScreen();
 
-  return { type: commandType.DEFAULT, value: null };
+  return { type: commandType.EXIT, value: null };
 }
