@@ -20,7 +20,9 @@ Check it out [here](https://www.marclang.ch).
 - **Interactive input** — prompt users with `INPUT` and resume execution when they respond.
 - **Program loading** — load bundled `.bas` files using `LOAD`.
 - **Execution interruption** — stop a running program with `Ctrl+C`.
-- **Retro interface** — Commodore 64-inspired typography, colors, and blinking cursor.
+- **PETSCII output** — use `CHR$()` for C64 text colors and screen control codes.
+- **Custom formatting extensions** — open and close styled output containers using extended `CHR$()` codes.
+- **Retro interface** — Commodore 64-inspired typography, colors, blinking cursor, and a clearable terminal screen.
 - **Automated testing** — unit and integration tests for BASIC commands and program execution.
 
 ## Getting started
@@ -159,6 +161,39 @@ RUN
 
 Press **Ctrl+C** to interrupt a running program, including one waiting for `INPUT`.
 
+### PETSCII colors and control codes
+
+Use `CHR$()` in `PRINT` statements to change text colors or control the screen:
+
+```basic
+10 PRINT CHR$(147)
+20 PRINT CHR$(28);"RED TEXT"
+30 PRINT CHR$(30);"GREEN TEXT"
+40 PRINT CHR$(154);"LIGHT BLUE TEXT"
+```
+
+`CHR$(147)` clears the terminal output. Color changes remain active for subsequent text until another color code is printed. The interpreter supports the C64's 16 text colors.
+
+### Retro Love extensions
+
+Retro Love reserves codes beyond the original 8-bit PETSCII range (`0`–`255`) for browser-specific formatting. Currently:
+
+| Code        | Effect                                 |
+| ----------- | -------------------------------------- |
+| `CHR$(256)` | Open a centered output container       |
+| `CHR$(257)` | Close the current formatting container |
+
+For example:
+
+```basic
+10 PRINT CHR$(256)
+20 PRINT "WELCOME TO RETRO LOVE"
+30 PRINT CHR$(257)
+40 PRINT "BACK TO NORMAL"
+```
+
+These are **Retro Love extensions**, not original Commodore 64 PETSCII codes. Formatting containers can span multiple `PRINT` statements.
+
 ## How it works
 
 The interpreter is organized into several components:
@@ -171,6 +206,8 @@ The interpreter is organized into several components:
 | **Arithmetic evaluator**    | Evaluates expressions with operator precedence and unary minus           |
 | **Program storage**         | Stores numbered BASIC lines and variables                                |
 | **Execution engine**        | Runs programs, handles jumps, waits for input, and supports interruption |
+| **PETSCII handlers**        | Interpret character control codes and Retro Love formatting extensions   |
+| **DOM output**              | Renders text, colors, and formatting containers in the terminal          |
 
 The interpreter evaluates arithmetic expressions without using JavaScript's `eval()`.
 
@@ -184,7 +221,7 @@ Run the test suite:
 vp test
 ```
 
-The tests cover tokenization, arithmetic evaluation, BASIC commands, and integration scenarios involving `RUN`, `GOTO`, `INPUT`, and Ctrl+C.
+The tests cover tokenization, arithmetic evaluation, BASIC commands, DOM output, PETSCII controls, and integration scenarios involving `RUN`, `GOTO`, `INPUT`, and Ctrl+C.
 
 ## Tech stack
 
