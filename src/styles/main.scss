@@ -11,9 +11,13 @@ as the starting point for compiling all project-related scss-files
 
 // generic styles
 @use "shared/html";
-@use "shared/animations";
+@use "shared/colors";
 @use "shared/shadows";
+@use "shared/animations";
 @use "shared/typography";
 
 // sections
-@use "section/section-c64";
+@use "app/layout";
+@use "app/input";
+@use "app/output";
+@use "app/colorschemes";
