@@ -3,7 +3,7 @@
 3 LET S$ = "FOO"
 
 10 PRINT "Hello World"
-20 PRINT "Want to read it again?"
+20 PRINT "Do you ";CHR$(154);"want to read it again?"
 30 INPUT "Y/N"; A$
 40 PRINT
 50 IF A$="Y" OR A$="y" THEN 10
@@ -11,6 +11,6 @@
 70 GOTO 30
 80 PRINT "ok. bye then"
 
-90 PRINT "NUMBER N: "; N
-100 PRINT "FLOAT F%: "; F%
-110 PRINT "STRING S$: "; S$
+90 PRINT "NUMBER N: "; CHR$(5); N; CHR$(154);
+100 PRINT "FLOAT F%: "; CHR$(5); F%; CHR$(154);
+110 PRINT "STRING S$: "; CHR$(5); S$; CHR$(154);

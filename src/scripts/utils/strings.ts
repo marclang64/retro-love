@@ -241,7 +241,7 @@ export function parse(tokens: Token[]): string {
       continue;
     }
 
-    if (token.type === "separator") {
+    if (token.type === "separator" && token.value === ",") {
       output += " ";
       continue;
     }
