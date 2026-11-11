@@ -5,7 +5,8 @@ function createDom() {
   const input = getElement<HTMLInputElement>(".input");
   const mirror = getElement<HTMLInputElement>(".mirror");
   const output = getElement<HTMLTextAreaElement>(".output");
-  let currentColor = "";
+  let textColor = "";
+  let bgColor = "";
 
   function outputLine(value: string | number): void {
     for (const character of `\n${value}`) {
@@ -42,7 +43,10 @@ function createDom() {
 
   const processPetscii = createPetscii({
     setColor: (color) => {
-      currentColor = color;
+      textColor = color;
+    },
+    setBgColor: (color) => {
+      bgColor = color;
     },
     clearOutput,
     openContainer,
@@ -50,24 +54,26 @@ function createDom() {
   });
 
   function appendCharacter(character: string): void {
-    if (!currentColor) {
+    if (!textColor && !bgColor) {
       currentContainer.append(document.createTextNode(character));
       return;
     }
 
+    const classes = [textColor, bgColor].filter(Boolean);
     const last = currentContainer.lastElementChild;
 
     if (
       last instanceof HTMLSpanElement &&
-      last.classList.contains(currentColor) &&
-      last === currentContainer.lastChild
+      last === currentContainer.lastChild &&
+      last.classList.length === classes.length &&
+      classes.every((className) => last.classList.contains(className))
     ) {
       last.textContent += character;
       return;
     }
 
     const span = document.createElement("span");
-    span.classList.add(currentColor);
+    span.classList.add(...classes);
     span.textContent = character;
     currentContainer.append(span);
   }
