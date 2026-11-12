@@ -10,7 +10,7 @@ export async function OPENLINK(args: string): Promise<CommandResult> {
       return { type: commandType.ERROR, value: null };
     }
 
-    window.open(url.href, "_blank", "noopener,noreferrer");
+    window.location.assign(url.href);
 
     return { type: commandType.DEFAULT, value: null };
   } catch {
