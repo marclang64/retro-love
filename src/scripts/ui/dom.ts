@@ -32,7 +32,6 @@ function createDom() {
   }
 
   function startupScreen(): void {
-    console.log("starting");
     clearOutput();
     openContainer("center");
     outputLine("**** Commodore 64 Basic V2 ****");
