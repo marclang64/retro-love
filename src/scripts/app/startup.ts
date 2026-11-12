@@ -4,7 +4,7 @@ import { commandType } from "./constants";
 import { dom } from "../ui/dom";
 
 export async function startApp(): Promise<void> {
-  const program = import.meta.env.PROD ? "website" : "website";
+  const program = import.meta.env.PROD ? "website" : "dev";
   const result = await LOAD(`"${program}"`);
 
   if (result.type === commandType.ERROR) {
