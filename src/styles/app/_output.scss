@@ -1,16 +1,19 @@
 .output {
   width: 100%;
+  max-height: calc(100dvh - 160px);
   max-height: calc(100vh - 160px);
   padding: 0 15px 0;
   margin: -4px 0 4px -15px;
   background-color: transparent;
   color: var(--color-light-blue);
   text-shadow: var(--glow-light-blue);
-  font-family: "Kommondore", monospace;
-  font-size: 1rem;
   text-transform: uppercase;
-  line-height: 1.5;
   scrollbar-width: none;
   white-space: pre-wrap;
   overflow-y: auto;
+
+  @media (max-width: 768px) {
+    max-height: calc(100vh - 75px);
+    max-height: calc(100dvh - 75px);
+  }
 }

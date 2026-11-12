@@ -1,11 +1,11 @@
 main#c64 {
   font-family: "Kommondore", monospace;
+  height: calc(100dvh - 90px);
   height: calc(100vh - 90px);
   color: var(--color-light-blue);
   margin: 30px;
   padding: 15px 25px;
   text-transform: uppercase;
-  line-height: 2;
   box-shadow: var(--glow-light-blue);
   background:
     url("/assets/images/noise.svg"),
@@ -37,5 +37,11 @@ main#c64 {
     background: repeating-linear-gradient(transparent 0px 1px, hsl(154 0% 0%/0.35) 3px 4px);
     opacity: 0.2;
     pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
+    margin: 15px;
   }
 }
