@@ -11,6 +11,7 @@ import { LET } from "./let";
 import { LIST } from "./list";
 import { LOAD } from "./load";
 import { NEW } from "./new";
+import { OPENLINK } from "./openlink";
 import { PRINT } from "./print";
 import { REM } from "./rem";
 import { RUN } from "./run";
@@ -32,6 +33,7 @@ export const commands: Record<string, CommandDefinition> = {
   list: { args: "none", fn: LIST },
   load: { args: "required", fn: LOAD },
   new: { args: "none", fn: NEW },
+  openlink: { args: "required", fn: OPENLINK },
   print: { args: "optional", fn: PRINT },
   rem: { args: "none", fn: REM },
   run: { args: "none", fn: RUN },
