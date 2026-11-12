@@ -3,12 +3,14 @@ import { commandType } from "../app/constants";
 
 export async function OPENLINK(args: string): Promise<CommandResult> {
   try {
-    const url = new URL(args.trim().replace(/^"|"$/g, ""));
-    if (!["http:", "https:"].includes(url.protocol)) {
+    const value = args.trim().replace(/^"|"$/g, "");
+    const url = new URL(value);
+
+    if (!["http:", "https:", "mailto:"].includes(url.protocol)) {
       return { type: commandType.ERROR, value: null };
     }
 
-    window.location.assign(url.href);
+    window.open(url.href, "_blank", "noopener,noreferrer");
 
     return { type: commandType.DEFAULT, value: null };
   } catch {
